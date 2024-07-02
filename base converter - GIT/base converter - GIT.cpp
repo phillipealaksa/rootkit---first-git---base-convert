@@ -1,6 +1,6 @@
 #include <iostream>
 #include <conio.h>
-
+#include <string>
 
 using namespace std;
 
@@ -14,6 +14,40 @@ bool isValidNum(int base, string num)
 		}
 	}
 	return true;
+}
+
+string convert(int pb, int sb, string pn)
+{
+	int btn = 0;
+	for (int i = 0; i < pn.length(); i++)
+	{
+		btn += pow(pn[i] - 48, pn.length() - i - 1);
+	}
+	if (sb == 10)
+	{
+		return to_string(btn);
+	}
+	else
+	{
+		string newn = "";
+		int maxp = 0;
+		while (pow(sb, maxp + 1) <= btn)
+		{
+			maxp++;
+		}
+		int mult;
+		for (int i = maxp; i >= 0; i--)
+		{
+			mult = 0;
+			while ((mult + 1) * pow(sb, i) <= btn)
+			{
+				mult++;
+			}
+			newn.insert(0, to_string(mult));
+			btn -= mult * pow(sb, i);
+		}
+		return newn;
+	}
 }
 
 void getInParams()
@@ -41,6 +75,9 @@ void getInParams()
 		cin >> input;
 	} while (!isValidNum(pb, input));
 	pn = input;
+	system("cls");
+	cout << pn << " base " << pb << " in base " << sb << " is " << convert(pb, sb, pn) << '\n';
+	_getch();
 }
 
 
@@ -89,6 +126,7 @@ int main()
 			if (cursIndex == 0)
 			{
 				getInParams();
+				return 0;
 			}
 			else
 			{
