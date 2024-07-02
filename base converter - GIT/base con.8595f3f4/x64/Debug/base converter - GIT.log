@@ -1,4 +1,8 @@
 ﻿  base converter - GIT.cpp
+<<<<<<< HEAD
 C:\Users\ProAc\Documents\mentorship\base convert - GIT\base converter - GIT\base converter - GIT.cpp(24,13): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
 C:\Users\ProAc\Documents\mentorship\base convert - GIT\base converter - GIT\base converter - GIT.cpp(47,16): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+=======
+  LINK : C:\Users\ProAc\Documents\mentorship\base convert - GIT\base converter - GIT\x64\Debug\base converter - GIT.exe not found or not built by the last incremental link; performing full link
+>>>>>>> input
   base converter - GIT.vcxproj -> C:\Users\ProAc\Documents\mentorship\base convert - GIT\base converter - GIT\x64\Debug\base converter - GIT.exe

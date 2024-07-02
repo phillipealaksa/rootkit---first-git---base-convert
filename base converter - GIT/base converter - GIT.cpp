@@ -8,7 +8,7 @@ bool isValidNum(int base, string num)
 {
 	for (char& c : num)
 	{
-		if (!(isdigit(c) && 0 <= c - 48 && c - 48 <= base))
+		if (!(isdigit(c) && 0 <= c - 48 && c - 48 < base))
 		{
 			return false;
 		}
@@ -57,16 +57,16 @@ void getInParams()
 	do
 	{
 		system("cls");
-		cout << "Enter primary base (2-9):\n";
+		cout << "Enter primary base (2-10):\n";
 		cin >> input;
-	} while (!(input.length() == 1 && isdigit(input[0]) && 2 <= (input[0] - 48) && (input[0] - 48) <= 9));
+	} while (!(isValidNum(10, input) && 2 <= stoi(input) && stoi(input) <= 10));
 	pb = input[0] - 48;
 	do
 	{
 		system("cls");
-		cout << "Enter secondary base (2-9):\n";
+		cout << "Enter secondary base (2-10):\n";
 		cin >> input;
-	} while (!(input.length() == 1 && isdigit(input[0]) && 2 <= (input[0] - 48) && (input[0] - 48) <= 9));
+	} while (!(isValidNum(10, input) && 2 <= stoi(input) && stoi(input) <= 10));
 	sb = input[0] - 48;
 	do
 	{
