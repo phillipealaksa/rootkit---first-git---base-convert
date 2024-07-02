@@ -1,7 +1,48 @@
 #include <iostream>
 #include <conio.h>
 
+
 using namespace std;
+
+bool isValidNum(int base, string num)
+{
+	for (char& c : num)
+	{
+		if (!(isdigit(c) && 0 <= c - 48 && c - 48 <= base))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+void getInParams()
+{
+	string input, pn;
+	int pb, sb;
+	do
+	{
+		system("cls");
+		cout << "Enter primary base (2-9):\n";
+		cin >> input;
+	} while (!(input.length() == 1 && isdigit(input[0]) && 2 <= (input[0] - 48) && (input[0] - 48) <= 9));
+	pb = input[0] - 48;
+	do
+	{
+		system("cls");
+		cout << "Enter secondary base (2-9):\n";
+		cin >> input;
+	} while (!(input.length() == 1 && isdigit(input[0]) && 2 <= (input[0] - 48) && (input[0] - 48) <= 9));
+	sb = input[0] - 48;
+	do
+	{
+		system("cls");
+		cout << "Enter valid primary number:\n";
+		cin >> input;
+	} while (!isValidNum(pb, input));
+	pn = input;
+}
+
 
 int main()
 {
@@ -47,7 +88,7 @@ int main()
 		{
 			if (cursIndex == 0)
 			{
-
+				getInParams();
 			}
 			else
 			{
@@ -56,5 +97,4 @@ int main()
 		}
 		system("cls");
 	}
-
 }
