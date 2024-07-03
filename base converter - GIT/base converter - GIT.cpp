@@ -38,7 +38,7 @@ string convert(int pb, int sb, string pn)
 		string newn = "";
 		while (btn > 0)
 		{
-			newn = to_string(btn % sb) + newn;
+			newn.insert(0, to_string(btn % sb));
 			btn /= sb;
 		}
 		return newn.empty() ? "0" : newn; // Handle case where btn is initially 0
@@ -69,7 +69,7 @@ void getInParams()
 		cout << "Enter valid primary number:\n";
 		cin >> input;
 	} while (!isValidNum(pb, input));
-	pn = stoi(input);
+	pn = input;
 	system("cls");
 	cout << pn << " base " << pb << " in base " << sb << " is " << convert(pb, sb, pn) << '\n';
 	_getch();
