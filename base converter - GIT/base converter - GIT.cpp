@@ -18,35 +18,30 @@ bool isValidNum(int base, string num)
 
 string convert(int pb, int sb, string pn)
 {
+	// Convert primary base number to decimal
 	int btn = 0;
-	for (int i = 0; i < pn.length(); i++)
+	int power = 1;
+	for (int i = pn.length() - 1; i >= 0; i--)
 	{
-		btn += pow(pn[i] - 48, pn.length() - i - 1);
+		btn += (pn[i] - '0') * power;
+		power *= pb;
 	}
+
+	// If secondary base is 10, return decimal number
 	if (sb == 10)
 	{
 		return to_string(btn);
 	}
 	else
 	{
+		// Convert decimal number to secondary base
 		string newn = "";
-		int maxp = 0;
-		while (pow(sb, maxp + 1) <= btn)
+		while (btn > 0)
 		{
-			maxp++;
+			newn = to_string(btn % sb) + newn;
+			btn /= sb;
 		}
-		int mult;
-		for (int i = maxp; i >= 0; i--)
-		{
-			mult = 0;
-			while ((mult + 1) * pow(sb, i) <= btn)
-			{
-				mult++;
-			}
-			newn.insert(0, to_string(mult));
-			btn -= mult * pow(sb, i);
-		}
-		return newn;
+		return newn.empty() ? "0" : newn; // Handle case where btn is initially 0
 	}
 }
 
@@ -60,21 +55,21 @@ void getInParams()
 		cout << "Enter primary base (2-10):\n";
 		cin >> input;
 	} while (!(isValidNum(10, input) && 2 <= stoi(input) && stoi(input) <= 10));
-	pb = input[0] - 48;
+	pb = stoi(input);
 	do
 	{
 		system("cls");
 		cout << "Enter secondary base (2-10):\n";
 		cin >> input;
 	} while (!(isValidNum(10, input) && 2 <= stoi(input) && stoi(input) <= 10));
-	sb = input[0] - 48;
+	sb = stoi(input);
 	do
 	{
 		system("cls");
 		cout << "Enter valid primary number:\n";
 		cin >> input;
 	} while (!isValidNum(pb, input));
-	pn = input;
+	pn = stoi(input);
 	system("cls");
 	cout << pn << " base " << pb << " in base " << sb << " is " << convert(pb, sb, pn) << '\n';
 	_getch();
