@@ -18,7 +18,6 @@ bool isValidNum(int base, string num)
 
 string convert(int pb, int sb, string pn)
 {
-	// Convert primary base number to decimal
 	int btn = 0;
 	int power = 1;
 	for (int i = pn.length() - 1; i >= 0; i--)
@@ -27,21 +26,18 @@ string convert(int pb, int sb, string pn)
 		power *= pb;
 	}
 
-	// If secondary base is 10, return decimal number
 	if (sb == 10)
 	{
 		return to_string(btn);
 	}
 	else
-	{
-		// Convert decimal number to secondary base
-		string newn = "";
+	{		string newn = "";
 		while (btn > 0)
 		{
 			newn.insert(0, to_string(btn % sb));
 			btn /= sb;
 		}
-		return newn.empty() ? "0" : newn; // Handle case where btn is initially 0
+		return newn.empty() ? "0" : newn; 
 	}
 }
 
